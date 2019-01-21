@@ -6,11 +6,11 @@ require 'php_codesniffer/gem_version.rb'
 Gem::Specification.new do |spec|
   spec.name          = 'danger-php_codesniffer'
   spec.version       = PhpCodesniffer::VERSION
-  spec.authors       = ['ymhuang']
+  spec.authors       = ['ymhuang0808']
   spec.email         = ['ymhuang@golface.com.tw']
-  spec.description   = %q{A short description of danger-php_codesniffer.}
-  spec.summary       = %q{A longer description of danger-php_codesniffer.}
-  spec.homepage      = 'https://github.com/ymhuang/danger-php_codesniffer'
+  spec.description   = %q{Danger plugin for PHP_CodeSniffer.}
+  spec.summary       = %q{Help you use Danger to check code standard and create comments on PR/MR}
+  spec.homepage      = 'https://github.com/Golface/danger-php_codesniffer'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)
@@ -28,8 +28,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.4'
 
   # Linting code and docs
-  spec.add_development_dependency "rubocop"
-  spec.add_development_dependency "yard"
+  spec.add_development_dependency "rubocop", '~>0.63'
+  spec.add_development_dependency "yard", '~>0.9'
 
   # Makes testing easy via `bundle exec guard`
   spec.add_development_dependency 'guard', '~> 2.14'

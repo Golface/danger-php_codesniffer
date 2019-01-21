@@ -1,0 +1,24 @@
+{
+  "totals": {
+    "errors": 0,
+    "warnings": 1,
+    "fixable": 1
+  },
+  "files": {
+    "spec/fixtures/php/warning.php": {
+      "errors": 0,
+      "warnings": 1,
+      "messages": [
+        {
+          "message": "PHP keywords must be lowercase; expected \"or\" but found \"OR\"",
+          "source": "Generic.PHP.LowerCaseKeyword.Found",
+          "severity": 4,
+          "fixable": true,
+          "type": "WARN",
+          "line": 2,
+          "column": 10
+        }
+      ]
+    }
+  }
+}

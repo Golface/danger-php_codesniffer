@@ -1,0 +1,57 @@
+{
+  "totals": {
+    "errors": 3,
+    "warnings": 1,
+    "fixable": 4
+  },
+  "files": {
+    "application/config/autoload.php": {
+      "errors": 1,
+      "warnings": 1,
+      "messages": [
+        {
+          "message": "PHP keywords must be lowercase; expected \"or\" but found \"OR\"",
+          "source": "Generic.PHP.LowerCaseKeyword.Found",
+          "severity": 5,
+          "fixable": true,
+          "type": "ERROR",
+          "line": 2,
+          "column": 21
+        },
+        {
+          "message": "Fake warning message",
+          "source": "Fake warning source",
+          "severity": 4,
+          "fixable": true,
+          "type": "WARN",
+          "line": 3,
+          "column": 10
+        }
+      ]
+    },
+    "application/config/hooks.php": {
+      "errors": 2,
+      "warnings": 0,
+      "messages": [
+        {
+          "message": "PHP keywords must be lowercase; expected \"or\" but found \"OR\"",
+          "source": "Generic.PHP.LowerCaseKeyword.Found",
+          "severity": 5,
+          "fixable": true,
+          "type": "ERROR",
+          "line": 2,
+          "column": 21
+        },
+        {
+          "message": "Spaces must be used to indent lines; tabs are not allowed",
+          "source": "Generic.WhiteSpace.DisallowTabIndent.TabsUsed",
+          "severity": 5,
+          "fixable": true,
+          "type": "ERROR",
+          "line": 11,
+          "column": 1
+        }
+      ]
+    }
+  }
+}

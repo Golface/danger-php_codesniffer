@@ -54,7 +54,9 @@ def testing_env
     "TRAVIS_PULL_REQUEST" => "800",
     "TRAVIS_REPO_SLUG" => "artsy/eigen",
     "TRAVIS_COMMIT_RANGE" => "759adcbd0d8f...13c4dc8bb61d",
-    "DANGER_GITHUB_API_TOKEN" => "123sbdq54erfsd3422gdfio"
+    "DANGER_GITHUB_API_TOKEN" => "123sbdq54erfsd3422gdfio",
+    "DANGER_GITLAB_API_TOKEN" => "123abcd54erfsd3422gdfio",
+    "DANGER_GITLAB_API_BASE_URL" => "https://mygitlab.com"
   }
 end
 
