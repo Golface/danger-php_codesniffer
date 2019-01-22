@@ -14,12 +14,17 @@ module Danger
   #
   class DangerPhpCodesniffer < Plugin
 
-    # An attribute that you can read/write from your Dangerfile
+    # An attribute for setting code standard
+    #
+    # @return [String]
+    attr_accessor :standard
+
+    # An attribute for ignoring file or directory
     #
     # @return   [String]
     attr_accessor :ignore
 
-    # Enable filtering
+    # An attribute for enabling filtering
     # Only show messages within changed files.
     # @return [Boolean]
     attr_accessor :filtering
@@ -75,6 +80,7 @@ module Danger
     def run_phpcs(bin, file)
       command = "#{bin} --report=json "
       command << "--basepath=. "
+      command << "--standard=#{standard}" if standard
       command << "--ignore=#{ignore}" if ignore
       result = `#{command} #{file}`
       JSON.parse result
