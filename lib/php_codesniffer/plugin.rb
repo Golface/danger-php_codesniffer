@@ -80,7 +80,7 @@ module Danger
     def run_phpcs(bin, file)
       command = "#{bin} --report=json "
       command << "--basepath=. "
-      command << "--standard=#{standard}" if standard
+      command << "--standard=#{standard} " if standard
       command << "--ignore=#{ignore}" if ignore
       result = `#{command} #{file}`
       JSON.parse result
