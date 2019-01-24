@@ -7,6 +7,7 @@ module Danger
   #
   #          php_codesniffer.ignore = "./vendor"
   #          php_codesniffer.filtering = true
+  #          php_codesniffer.standard = "PSR2"
   #          php_codesniffer.exec
   #
   # @see  golface/danger-php_codesniffer
