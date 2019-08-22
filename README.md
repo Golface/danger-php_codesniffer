@@ -31,7 +31,7 @@ php_codesniffer.exec
 Only check new and modified file:
 
 ```
-php_codesniffer.standard = "PSR2"
+php_codesniffer.filtering = true
 php_codesniffer.exec
 ```
 
