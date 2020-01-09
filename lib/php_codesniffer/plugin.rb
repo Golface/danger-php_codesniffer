@@ -30,6 +30,11 @@ module Danger
     # @return [Boolean]
     attr_accessor :filtering
 
+    # An attribute for failing on errors
+    # In case phpcs finds errors, Danger will fail the pipeline
+    # @return [Boolean]
+    attr_accessor :failonerror
+
     # Execute and process phpcs CLL's result.
     #
     # @return [void]
@@ -63,6 +68,9 @@ module Danger
       markdown "# PHP_CodeSniffer report"
       markdown generate_summary_markdown summary
       markdown report
+      if failonerror && summary["errors"] > 0
+        messaging.failure("There are #{summary["errors"]} errors that need to be resolved.")
+      end
     end
 
     private
