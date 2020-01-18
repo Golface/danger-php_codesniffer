@@ -69,7 +69,7 @@ module Danger
       markdown generate_summary_markdown summary
       markdown report
       if failonerror && summary["errors"] > 0
-        fail "There are #{summary["errors"]} errors that need to be resolved."
+        messaging.failure("There are #{summary["errors"]} errors that need to be resolved.")
       end
     end
 
