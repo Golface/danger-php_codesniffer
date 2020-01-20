@@ -14,26 +14,40 @@ $ gem install danger-php_codesniffer
 
 Detect your PHP violations of a defined coding standard. The plugin will post a comment on PR/MR on your Github or Gitlab project.
 
-Dangerfile:
+Add this to your Dangerfile to run CodeSniffer:
 
 ```
 php_codesniffer.exec
 ```
 
-Ignore file/path and use specific coding standard:
+---
+
+You can modify how the plugin behaves by adding one or more of the following options before the `php_codesniffer.exec` call:
+
+Ignore file/path:
 
 ```
 php_codesniffer.ignore = "./vendor"
+```
+
+Use specific coding standard:
+
+```
 php_codesniffer.standard = "CodeIgniter"
-php_codesniffer.exec
 ```
 
 Only check new and modified file:
 
 ```
 php_codesniffer.filtering = true
-php_codesniffer.exec
 ```
+
+Fail the pipeline if CodeSniffer reports any errors (you also have to run Danger with the `--fail-on-errors` flag set to true):
+
+```
+php_codesniffer.fail_on_error = true
+```
+
 
 ## Development
 

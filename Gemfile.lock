@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    danger-php_codesniffer (0.1.5)
+    danger-php_codesniffer (0.1.6)
       danger-plugin-api (~> 1.0)
 
 GEM
