@@ -62,7 +62,9 @@ module Danger
             summary["warnings"] += totals.fetch("warnings")
             summary["fixable"] += totals.fetch("fixable")
 
-            report.push(generate_report result)
+            if (totals["errors"] + totals.fetch("warnings") + totals.fetch("fixable")) > 0
+              report.push(generate_report result)
+            end
           end
       end
 
