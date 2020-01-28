@@ -68,9 +68,12 @@ module Danger
           end
       end
 
-      markdown "# PHP_CodeSniffer report"
-      markdown generate_summary_markdown summary
-      markdown report
+      if (summary["errors"] + summary["warnings"] + summary["fixable"]) > 0
+        markdown "# PHP_CodeSniffer report"
+        markdown generate_summary_markdown summary
+        markdown report
+      end
+      
       if fail_on_error && summary["errors"] > 0
         fail "There are #{summary["errors"]} errors that need to be resolved."
       end
