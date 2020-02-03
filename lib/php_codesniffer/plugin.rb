@@ -62,13 +62,18 @@ module Danger
             summary["warnings"] += totals.fetch("warnings")
             summary["fixable"] += totals.fetch("fixable")
 
-            report.push(generate_report result)
+            if (totals["errors"] + totals.fetch("warnings") + totals.fetch("fixable")) > 0
+              report.push(generate_report result)
+            end
           end
       end
 
-      markdown "# PHP_CodeSniffer report"
-      markdown generate_summary_markdown summary
-      markdown report
+      if (summary["errors"] + summary["warnings"] + summary["fixable"]) > 0
+        markdown "# PHP_CodeSniffer report"
+        markdown generate_summary_markdown summary
+        markdown report
+      end
+      
       if fail_on_error && summary["errors"] > 0
         fail "There are #{summary["errors"]} errors that need to be resolved."
       end
