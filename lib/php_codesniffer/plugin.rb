@@ -36,6 +36,16 @@ module Danger
     # @return [Boolean]
     attr_accessor :fail_on_error
 
+    # An attribute for not showing warnings in the Danger report
+    #
+    # @return [Boolean]
+    attr_accessor :ignore_warnings
+
+    # An attribute for not showing fixables in the Danger report
+    #
+    # @return [Boolean]
+    attr_accessor :ignore_fixables
+
     # Execute and process phpcs CLL's result.
     #
     # @return [void]
@@ -59,16 +69,24 @@ module Danger
             totals = result.fetch("totals")
 
             summary["errors"] += totals["errors"]
-            summary["warnings"] += totals.fetch("warnings")
-            summary["fixable"] += totals.fetch("fixable")
+            summary["warnings"] += totals.fetch("warnings") unless ignore_warnings
+            summary["fixable"] += totals.fetch("fixable") unless ignore_fixables
 
-            if (totals["errors"] + totals.fetch("warnings") + totals.fetch("fixable")) > 0
+            relevant_result_amount_current_file = totals["errors"]
+            relevant_result_amount_current_file += totals.fetch("warnings") unless ignore_warnings
+            relevant_result_amount_current_file += totals.fetch("fixable") unless ignore_fixables
+            
+            if relevant_result_amount_current_file > 0
               report.push(generate_report result)
             end
           end
       end
+      
+      relevant_result_amount = summary["errors"]
+      relevant_result_amount += summary["warnings"] unless ignore_warnings
+      relevant_result_amount += summary["fixable"] unless ignore_fixables
 
-      if (summary["errors"] + summary["warnings"] + summary["fixable"]) > 0
+      if relevant_result_amount > 0
         markdown "# PHP_CodeSniffer report"
         markdown generate_summary_markdown summary
         markdown report
@@ -108,7 +126,12 @@ module Danger
     # @return [String]
     def generate_summary_markdown(summary = { errors: 0, warnings: 0, fixable: 0 })
       request_type = host_type == :gitlab ? "MR" : "PR"
-      "## There are #{summary["errors"]} errors, #{summary["warnings"]} warnings and #{summary["fixable"]} fixable in the #{request_type}"
+      
+      errorString = "#{summary["errors"]} errors"
+      warningString = ignore_warnings ? "" : ", #{summary["warnings"]} warnings"
+      fixableString = ignore_fixables ? "" : " and #{summary["fixable"]} fixable"
+      
+      "## There are #{errorString}#{warningString}#{fixableString} in the #{request_type}"
     end
 
     # Generate phpcs report markdown text by each file

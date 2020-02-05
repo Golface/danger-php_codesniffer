@@ -48,6 +48,12 @@ Fail the pipeline if CodeSniffer reports any errors (you also have to run Danger
 php_codesniffer.fail_on_error = true
 ```
 
+Ignore warnings and/or fixables in the Danger output:
+
+```
+php_codesniffer.ignore_warnings = true
+php_codesniffer.ignore_fixables = true
+```
 
 ## Development
 
