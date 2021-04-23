@@ -51,8 +51,11 @@ module Danger
         summary = result.fetch("totals")
         report = generate_report result
       else
-        ((git.modified_files - git.deleted_files) + git.added_files)
-          .select {|file| ((file.end_with? ".php") || (file.end_with? ".inc"))}
+
+        deleted_and_renamed_files = git.deleted_files + git.renamed_files.map { |change| change[:before] }
+
+        ((git.modified_files - deleted_and_renamed_files) + git.added_files)
+          .select { |file| ((file.end_with? ".php") || (file.end_with? ".inc")) }
           .map { |file| file.gsub("#{Dir.pwd}/", '') }
           .each do |file|
             result = run_phpcs(bin, file)
